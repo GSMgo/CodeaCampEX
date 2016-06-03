@@ -1,10 +1,6 @@
-require_relative 'pregunta'
-require_relative 'tablero'  
-
 class Vista
 
   def initialize
-    @abc=0
 
   end
 
