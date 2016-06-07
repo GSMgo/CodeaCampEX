@@ -169,3 +169,21 @@ group by orderid
       18          120         
       19          130         
       20          60      
+
+      __________________________ (modificando una base de datos)__________
+
+
+select companyname, orderid, orderdate
+from customers join orders
+on customers.customerid = orders.customerid
+where companyname = 'Floor Co.' AND orderdate between '2013-0-0' AND '2013-12-31';
+
+
+select orderid, customerid
+from orders
+where customerid=5
+
+delete from orders
+where orderid = 13
+delete from orders 
+where orderid = 17
