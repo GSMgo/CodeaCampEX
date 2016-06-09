@@ -9,7 +9,7 @@ class TasksController
     @view.index(tasks)
   end
 
-  def add(text)
+  def add(text)q
     Task.create(text: text, competed: false)
     @view.create
   end
