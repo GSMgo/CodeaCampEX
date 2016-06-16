@@ -6,12 +6,13 @@ end
 
 
 post '/abuelita' do
-  @user_input = params[:user_input]
+  p @user_input = params[:user_input]
 	if @user_input == "bye"
 		@abuelita = "Adios mijo"
-		erb :index
+		# erb :index
 	else
 		@abuelita = "QUE QUEEEEE"
+		# erb :index
 	end
 end
 
