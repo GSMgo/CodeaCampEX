@@ -1,0 +1,63 @@
+.container {
+  margin: 0 auto;
+  width: 768px;
+}
+
+header {
+  background-color: black;
+}
+
+#logo {
+  display: block;
+  margin: 0 auto;
+}
+
+small.page_no {
+  float: right;
+  color: #ddd;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
+ul {
+  display: inline-block;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+ul li {
+  display: inline;
+}
+
+ul li a {
+  color: black;
+  float: left;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  padding: 8px;
+}
+
+ul li a.active {
+  background-color: #E0E0E0;
+
+}
+
+ul li a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+
+#disabledfirst {
+  color: #EFEFEF;
+  background-color: #FFFFFF;
+
+}
+
+#disabledlast {
+  color: #EFEFEF;
+  background-color: #FFFFFF;
+
+}
+
