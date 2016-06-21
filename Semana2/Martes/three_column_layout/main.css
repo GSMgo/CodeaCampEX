@@ -33,3 +33,7 @@ h5{
   text-align: center;
 }
 
+ul li {
+    list-style-type: square;
+}
+
