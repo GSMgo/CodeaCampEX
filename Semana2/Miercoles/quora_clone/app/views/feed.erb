@@ -1,0 +1,7 @@
+<h1>QUO-ORA!</h1>
+
+<% if @user != nil %>  
+  <h5> You are logged as: <%= @user.username %></h5> 
+  <p> Questions: </p> <% Question.count_questions_id(@user.id).length %>
+  <p> Answers: </p> <%  %>
+<% end %>
