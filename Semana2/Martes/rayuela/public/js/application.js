@@ -3,7 +3,7 @@ $(document).ready(function() {
 
   $("#start_btn").click(function(){
       reset_bar();
-      run();
+      run().done(winner());
       winner();
   });
 
@@ -63,6 +63,7 @@ $(document).ready(function() {
   }
 
   function run(){
+    var r = $.Deferred();
     march1();
     march2();
   }
