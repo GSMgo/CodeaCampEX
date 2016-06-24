@@ -3,7 +3,7 @@
 <h1 id="titulo"><%= @title %></h1>
 
 <!-- Insertar aqui cada nuevo div de pregunta -->
-<form id="question">
+<form id="question" action="/finished_survey/get" method="POST">
   <div id="question_field">
     <label>Question: </label>
     <input id="pregunta" type="text">

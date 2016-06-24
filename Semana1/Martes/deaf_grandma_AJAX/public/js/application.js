@@ -9,6 +9,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     var str = $( "form" ).serialize();
+    console.log("ESTA ES LA FOMA SERIALIZADA")
     console.log(str);
 
     $.post("/abuelita", str, function(data) {
