@@ -1,0 +1,19 @@
+  <h1>Bienvenido al app de twitter!</h1>
+
+  <% if @username %>
+     <p>Welcome: <%= @username %></p>
+  <% end %>
+
+<form action="/" method="POST">
+  <input type="text" name="username" placeholder="username">
+  <input type="submit" value="Login/register">
+</form>
+<br>
+<br>
+
+<form action="/fetch" method="POST">
+  <input type="text" name="twitter_handle" placeholder="handle">
+  <input type="submit" placeholder="next"> 
+</form>
+
+  

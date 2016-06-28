@@ -1,0 +1,5 @@
+<h3> List of tweets of: <%= @handle  %></h3>
+
+<% @tweets.each do |t| %>
+  <p><%= t.text %></p>
+<% end %>
