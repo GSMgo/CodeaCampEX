@@ -17,6 +17,13 @@
 
 <div>
 <p>Authored Surveys:</p>
+  <ul id="authored_surveys">
+    <% string_titles = "" %>
+    <% Survey.all.each do |x| %>
+    <%  string_titles += "<li>#{x.title}</li>"  %>
+    <% end %>
+    <%= string_titles %>
+  </ul>
 
 </div>
 <div>

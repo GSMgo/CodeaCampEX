@@ -46,9 +46,25 @@ post '/create_survey' do
   redirect to ("/create_survey/#{user_id}")
 end
 
-post '/answer_survey' do
+post '/finished_survey' do
+  survey_hash = JSON.parse(params[:info])
+  user_id = session[:user_id]
+  title = session[:title]
+  survey = Survey.create(title: title, user_id: user_id)
+  survey_hash.each_pair do |question_value, array_answers|
+    question = Question.create(survey_id: survey.id, text: question_value)
+    array_answers.each do |answer_value|
+      answer = Answer.create(question_id: question.id, text: answer_value)
+    end
+  end
+  user_id
+end
 
 
+post '/finished_survey/get' do
+  user_id = session[:user_id]
+  p "ENTRA AQUI"
+  redirect to ("/profile/#{user_id}")
 end
 
 
