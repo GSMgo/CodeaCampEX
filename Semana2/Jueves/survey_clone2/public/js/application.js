@@ -37,9 +37,6 @@ $(document).ready(function() {
   $("#continue").click(function(e){
     e.preventDefault();
     count = count + 1;
-
-    console.log("CONTINUE CLICKED");
-    console.log(count);
     $("#question_field").hide();
     pregunta = $('#pregunta')[0].value;
     survey_questions[count] = pregunta;
@@ -56,22 +53,13 @@ $(document).ready(function() {
           $ans = '<li>'+respuesta+'</li>';
           $("ul").last().append($ans);
 
-          $("#question_completed"+count).click(function(e){
-            e.preventDefault();
-            $("#question_field").show();
-            $("#place_answer"+count).hide();
-            $("#question_completed"+count).hide();
-
-          });
-
-
-        });
-
-        
-
+            $("#question_completed"+count).click(function(e){
+              e.preventDefault();
+              $("#question_field").show();
+              $("#place_answer"+count).hide();
+              $("#question_completed"+count).hide();
+            });
+        });     
   });
-
- 
-
 
 });

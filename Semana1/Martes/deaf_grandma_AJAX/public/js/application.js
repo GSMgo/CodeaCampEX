@@ -13,7 +13,7 @@ $(document).ready(function() {
 
     $.post("/abuelita", str, function(data) {
       console.log(data);
-      $("#respuesta").html("<h1>Tu abuelita dice: " + data + "</h1>");
+      $("# ").html("<h1>Tu abuelita dice: " + data + "</h1>");
     });
 
   });
