@@ -1,0 +1,18 @@
+
+<div class="session">
+  <% if @user_id %>
+    <form id="logout" action="/logout" method="POST">
+      <a><%= @user.username %></a>
+      <input type="submit" value="Logout">
+    </form>
+  <% end %>
+</div>
+<div class="content">
+<h1>Bienvenido al app de twitter!</h1>
+<form action="/profile" method="POST">
+  <input type="text" name="username" placeholder="username">
+  <input type="submit" value="Login/register">
+</form>
+</div>
+
+  
