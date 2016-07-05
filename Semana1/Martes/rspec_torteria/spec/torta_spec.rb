@@ -86,7 +86,7 @@ describe Torta do
 
   describe "#bake_time" do
     it "returns bake time of the specified type" do
-        # expects(type).to eq()
+        expect(torta.bake_time).to eq(10)
     end
   end
 end
