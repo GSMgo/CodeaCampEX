@@ -4,24 +4,49 @@ $( document ).ready(function() {
 
 // Class Torta
   class Torta {
-    constructor() {
-
-    }
   }
 
   // Class TortaBatch
   class TortaBatch {
-    constructor() {
-
-    }
   }
 
   // Class Oven
   class Oven {
-    constructor() {
-
-    }
   }
+
+  var type;
+  var time;
+  var temp;
+  var counter = 0;
+
+  function set_status(){
+    counter ++;
+    //swtich de milanesa 
+    switch (counter){
+      case 
+    }
+     //swtich de jamon
+    switch (counter){
+      case 
+    }
+     //swtich de queso
+    switch (counter){
+      case 
+    }
+
+    console.log(counter);
+  }
+
+  function countdown() {
+    if (time == -1) {
+      return;
+    }
+    temp = document.getElementById('timer');
+    temp.innerHTML = time;
+    set_status(); 
+    time--;
+    timeout = setTimeout(countdown, 1000);
+  } 
 
   $('form.create-oven').submit(function(e){
     e.preventDefault();
@@ -33,37 +58,15 @@ $( document ).ready(function() {
         e.preventDefault();
         type = $('input#type').val();
         time = $('input#time').val();
-        hornear(time);
+        $('#timer').append('<div id="status"></div>')
+        status = $('#timer').html();
+        countdown();
       });
 
 
   });
 
 
-
-  function hornear(time){
-    startTimer(time);
-  }
-
-  var timeInSecs;
-  var ticker;
-
-  function startTimer(secs){
-    timeInSecs = parseInt(secs)-1;
-    ticker = setInterval("tick()",1000);   // every second
-  }
-
-  function tick() {
-    var secs = timeInSecs;
-    if (secs>0) {
-    timeInSecs--;
-  }
-    else {
-      clearInterval(ticker); // stop counting at zero
-      // startTimer(60);  // remove forward slashes in front of startTimer to repeat if required
-  }
-    $("#timer").innerHTML = secs;
-  }
 
 
 
