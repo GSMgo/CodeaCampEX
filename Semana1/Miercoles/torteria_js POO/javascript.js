@@ -1,26 +1,20 @@
 $( document ).ready(function() {
 
-
-
 // Class Torta
-  class Torta {
-  }
-
-  // Class TortaBatch
-  class TortaBatch {
+  function Torta (type) {
+    this.type = type;
   }
 
   // Class Oven
-  class Oven {
+  function Oven (time){
+    this.time = time;
   }
 
-  var type;
-  var time;
   var temp;
   var counter = 0;
 
   function set_status(){
-      if (type == "milanesa") {  
+      if (torta.type == "milanesa") {  
          if (counter == 0) {
             $('.clear').html("crudo");
          } else if (counter == 8) {
@@ -30,7 +24,7 @@ $( document ).ready(function() {
          } else if (counter == 11){
             $('.clear').html("quemado");
          } 
-      } else if (type == "jamon"){
+      } else if (torta.type == "jamon"){
          if (counter == 0) {
             $('.clear').html("crudo");
          } else if (counter == 6) {
@@ -40,7 +34,7 @@ $( document ).ready(function() {
          } else if (counter == 9){
             $('.clear').html("quemado");
          } 
-      } else if (type == "queso"){
+      } else if (torta.type == "queso"){
          if (counter == 0) {
             $('.clear').html("crudo");
          } else if (counter == 2) {
@@ -72,15 +66,21 @@ $( document ).ready(function() {
       }
   }
 
+  function append_batch(){
+    status = $('.clear').html();
+    $('#history').append('<li>'+type1+' --> '+status+'');
+  }
+
   function countdown() {
-    if (time == -1) {
+    if (oven.time == -1) {
+      append_batch();
       return;
     }
     temp = document.getElementById('timer');
-    temp.innerHTML = time;
+    temp.innerHTML = oven.time;
     set_status();
     set_background(); 
-    time--;
+    oven.time--;
     timeout = setTimeout(countdown, 1000);
   } 
 
@@ -88,14 +88,18 @@ $( document ).ready(function() {
   $('form.create-oven').submit(function(e){
     e.preventDefault();
     $('.oven').css('visibility', 'visible');
+    
     $('form.create-oven').hide();
     $('.oven').append('<form id="cook"><input type="text" id="type" placeholder="Tipo de torta"><input type="text" id="time" placeholder="Tiempo"><input type="submit" value="Cocinar"></form>')
     
       $('form#cook').submit(function(e){
         e.preventDefault();
         counter = 0;
-        type = $('input#type').val();
-        time = $('input#time').val();
+        type1 = $('input#type').val();
+        time1 = $('input#time').val();
+        torta = new Torta(type1);
+        oven = new Oven(time1);
+        $('#history').css('visibility', 'visible');
         countdown();
       });
 
