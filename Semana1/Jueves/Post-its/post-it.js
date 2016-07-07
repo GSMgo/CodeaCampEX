@@ -12,18 +12,27 @@ var Board = function( selector ) {
    initialize();
 };
 
-var $elem
+var $elem;
+init_postIt = $('.post-it');
+var zindex = 1;
 
 var PostIt = function(x,y) {
-   console.log("X  " + x + "  Y  " + y );
-   // Aquí va el código relacionado con un post-it
-   init_postIt = $('.post-it');
    clone_postIt = init_postIt.clone();
    clone_postIt.removeAttr( 'style' );
    clone_postIt.css({top: y, left: x});
-   // clone_postIt.removeClass();
-   // clone_postIt.addClass('post-it');
    $elem.append(clone_postIt);
+   $( ".post-it" ).draggable({cancel: ".content",
+      start: function() {
+        console.log("AAAA");
+         $(this).css('zIndex', zindex);
+        zindex = zindex +1 ;
+      }
+   });
+
+
+   $('.close').click(function(){
+      $(this).parents('div').remove();
+   });
 };
 
 
@@ -33,12 +42,24 @@ $(function() {
 });
 
 $(function() {
-   $( ".post-it" ).draggable({cancel: ".content"});
+   $( ".post-it" ).draggable({cancel: ".content",
+      stop: function() {
+        console.log("AAAA");
+        $(this).css('zIndex', zindex);
+        zindex = zindex +1 ;
+      }
+   });
+   
 });
 
 
 $( "#board" ).dblclick(function(e) {
    x = e.pageX;
    y = e.pageY;
-   PostIt(x,y);// $( "#board" ).append('<div id="master" class="post-it"><div class="header"><div class="close">X</div></div><div class="content">...</div></div>');
+   var elem = document.elementFromPoint(x, y); 
+   if('#'+elem.id+'' == $elem.selector){
+      PostIt(x,y);// $( "#board" ).append('<div id="master" class="post-it"><div class="header"><div class="close">X</div></div><div class="content">...</div></div>');
+   }
+
 });
+

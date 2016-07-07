@@ -18,6 +18,7 @@
   background-color: #c2c25b;
   text-align: right;
   padding: 2px;
+  height: 15px;
 }
 
 .post-it .header:hover {
@@ -38,4 +39,9 @@
   padding: 10px;
   min-height: 70px;
   outline: none;
+}
+
+.post-it .header .close {
+  width: 15px;
+  float: right;
 }
