@@ -7,11 +7,12 @@ $( document ).ready(function() {
          var count = $('#cardSlots > *').length;
          if(count < 10){
             // do something with the dock
-            $(this).effect("shake");
+            // $(this).effect("shake");
             // do something with the draggable item
             a = $(ui.draggable).clone();
             // $('#cardSlots').append($(ui.draggable));
             $('#cardSlots').append(a);
+            cardSlots.cards.push(new Card(i, '<div>'+parseInt(a.html(), 10)+'</div>'));
             num = $(ui.draggable).html();
             update_sum(num);
          }
@@ -19,17 +20,25 @@ $( document ).ready(function() {
    });
 }); // end of document ready
 
-var pile = [];
+var cardPile = new CardPile();
+var cardSlots = new CardSlotsContainer();
+var sumDisplay = new SumDisplay();
 
-function fill_pile(){
-    for (i = 0; i < 10; i++) { 
-      pile.push(new Number(i));
-      $('#cardPile').append('<div>'+i+'</div>');
-    }
-  }
-
-function Number(num){
+function Card(num, element){
   this.num = num;
+  this.element = element;
+}
+
+function CardPile(){
+   this.cards = [];
+}
+
+function CardSlotsContainer(){
+   this.cards = [];
+}
+
+function SumDisplay(){
+   this.sum = 0
 }
 
 $(function() {
@@ -38,12 +47,16 @@ $(function() {
     }); 
 });
 
+function fill_pile(){
+   for (i = 0; i < 10; i++) { 
+      cardPile.cards.push(new Card(i, '<div>'+i+'</div>'));
+      $('#cardPile').append(cardPile.cards[i].element);
+   }
+}
+
 function update_sum(num){
-  actual_total = $('#total_sum').html();
-  console.log("num: " + num + "  actual_total:" + actual_total )
-  sum = parseInt(actual_total, 10) + parseInt(num, 10);
-  console.log(sum)  
-  $('#total_sum').html(sum);
+   sumDisplay.sum = sumDisplay.sum + parseInt(num,10);
+  $('#total_sum').html(sumDisplay.sum);
 } 
 
 
