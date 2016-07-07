@@ -3,24 +3,20 @@ $( document ).ready(function() {
   fill_pile();
 
   $("div#cardSlots").droppable({
-    drop: function(event, ui) {
-      // do something with the dock
-      // $(this).effect("shake");
-      // do something with the draggable item
-      a = $(ui.draggable).clone();
-      // $('#cardSlots').append($(ui.draggable));
-      $('#cardSlots').append(a);
-      num = $(ui.draggable).html();
-      update_sum(num);
-    }
-  });
-
-  // $("#cardPile div" ).click(function(){
-  //   a = $(this).clone();
-  //   console.log(a);
-  //   $('#cardPile').append(a);
-  // });
-
+      drop: function(event, ui) {
+         var count = $('#cardSlots > *').length;
+         if(count < 10){
+            // do something with the dock
+            $(this).effect("shake");
+            // do something with the draggable item
+            a = $(ui.draggable).clone();
+            // $('#cardSlots').append($(ui.draggable));
+            $('#cardSlots').append(a);
+            num = $(ui.draggable).html();
+            update_sum(num);
+         }
+      }
+   });
 }); // end of document ready
 
 var pile = [];
@@ -49,3 +45,6 @@ function update_sum(num){
   console.log(sum)  
   $('#total_sum').html(sum);
 } 
+
+
+
