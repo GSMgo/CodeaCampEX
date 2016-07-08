@@ -1,40 +1,51 @@
-var Board = function( selector ) {
-   // Aqui deberá ir el código que tenga que ver con tu tablero 
-
-   // Utiliza esta sintaxis para referirte al selector que representa al tablero.
-   // De esta manera no dependerás tanto de tu HTML.  
-   $elem = $( selector );
-   $board_pi = [];
+var Board = function() {
+   this.element = document.createElement("div");   
+   $(this.element).addClass('board')
+   $(this.element).attr('id', board_counter);
+   this.board_pi = [];
+   $('#sidebar').append('<p>Board '+board_counter+'</p>')
+   board_counter++;
 
    function initialize() {
     // Que debe de pasar cuando se crea un nuevo tablero?
     $('.post-it').remove();
-    create_post_it(0,0);
-
+    // create_post_it(0,0);
    };
-
    initialize();
 };
 
 var PostIt = function(x,y) {
    this.x = x;
    this.y = y;
-   this.element = init_postIt.clone();
+   this.element = document.createElement("div");
+   $(this.element).append('<div id="master" class="post-it"><div class="header"><div class="close">X</div></div><div contenteditable="true" class="content">...</div></div>');
+   // this.element = init_postIt.clone();
 };
 
-var $elem;
+var board_counter = 1;
+var boards = [];
+var $elem =    $('#board');
 var init_postIt = $('.post-it');
 var zindex = 1;
 
 
-$(function() {
-   // Esta es la fucnión que correrá cuando este listo el DOM 
-   new Board('#board');
-});
+// $(function() {
+//    // Esta es la fucnión que correrá cuando este listo el DOM 
+//    new Board();
+// });
+
+function create_board(){
+   var new_board = new Board();
+   boards.push(new_board);
+   $('body').append(new_board.element);
+   console.log("ENTRO AQUI");
+
+}
 
 function create_post_it(x,y){
    var new_pi = new PostIt(x,y,init_postIt.clone());
    $board_pi.push(new_pi);
+
    new_pi.element.removeAttr( 'style' );
    new_pi.element.css({top: y, left: x});
    $elem.append(new_pi.element);
@@ -69,6 +80,10 @@ $( "#board" ).dblclick(function(e) {
    }
 });
 
+//click para crear un nuevo board
+$('#new_board').click(function(){
+   create_board();
+});
 
 
 
