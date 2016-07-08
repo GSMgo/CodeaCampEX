@@ -2,31 +2,27 @@ var Board = function() {
    this.element = document.createElement("div");   
    $(this.element).addClass('board')
    $(this.element).attr('id', board_counter);
-   this.board_pi = [];
-   $('#sidebar').append('<p>Board '+board_counter+'</p>')
+   this.board_pi = [];  
+   this.board_number = board_counter
    board_counter++;
-
-   function initialize() {
-    // Que debe de pasar cuando se crea un nuevo tablero?
-    $('.post-it').remove();
-    // create_post_it(0,0);
-   };
-   initialize();
+   this.name = undefined;
 };
 
 var PostIt = function(x,y) {
    this.x = x;
    this.y = y;
    this.element = document.createElement("div");
-   $(this.element).append('<div id="master" class="post-it"><div class="header"><div class="close">X</div></div><div contenteditable="true" class="content">...</div></div>');
+   $(this.element).addClass('post-it');
+   $(this.element).attr('id', 'master')
+   $(this.element).append('<div class="header"><div class="close">X</div></div><div contenteditable="true" class="content">...</div>');
    // this.element = init_postIt.clone();
 };
 
 var board_counter = 1;
 var boards = [];
-var $elem =    $('#board');
 var init_postIt = $('.post-it');
 var zindex = 1;
+var active_board = undefined;
 
 
 // $(function() {
@@ -35,20 +31,47 @@ var zindex = 1;
 // });
 
 function create_board(){
+   var board_name = prompt("Please enter a name for the board");
    var new_board = new Board();
+   new_board.name = board_name;
+   $('#sidebar').append('<span class="board_name" id='+new_board.board_number+'>'+new_board.name+'</span>');
+   console.log("New board created");
    boards.push(new_board);
    $('body').append(new_board.element);
-   console.log("ENTRO AQUI");
+   change_active_board(new_board.board_number);
+   active_board = new_board.board_number;
 
+   //funcion para crear un nuevo post it al hacer doble click (checa si se hace click en el board)
+   $( ".board" ).dblclick(function(e) {
+      board = boards.filter(function(a){ return a.board_number == active_board})[0];
+      console.log("CLick en board");
+      x = e.pageX;
+      y = e.pageY;
+      var elemc = document.elementFromPoint(x, y); 
+      if(elemc.id == board.element.id){
+         create_post_it(x,y);
+      }
+   });
+
+   //funcion al dar click en el nombre de otro tablero
+   $('.board_name').click(function(){
+      id = $(this).attr('id');
+      console.log("BOARD ID CLICKED:  " + id);
+      change_active_board(id);
+   });
 }
 
 function create_post_it(x,y){
+   x = x - 288;
+   console.log("Create post it");
+   board = boards.filter(function(a){ return a.board_number == active_board})[0];
    var new_pi = new PostIt(x,y,init_postIt.clone());
-   $board_pi.push(new_pi);
+   board.board_pi.push(new_pi);
+   console.log(new_pi);
 
-   new_pi.element.removeAttr( 'style' );
-   new_pi.element.css({top: y, left: x});
-   $elem.append(new_pi.element);
+   $(new_pi.element).removeAttr( 'style' );
+   $(new_pi.element).css({top: y, left: x});
+   $(board.element).append($(new_pi.element));
 
    //funcion para arrastrar el postit
    $(function() {
@@ -70,20 +93,24 @@ function create_post_it(x,y){
    });
 }
 
-//funcion para crear un nuevo post it al hacer doble click (checa si se hace click en el board)
-$( "#board" ).dblclick(function(e) {
-   x = e.pageX;
-   y = e.pageY;
-   var elem = document.elementFromPoint(x, y); 
-   if('#'+elem.id+'' == $elem.selector){
-      create_post_it(x,y);
-   }
-});
 
 //click para crear un nuevo board
 $('#new_board').click(function(){
    create_board();
 });
+
+//funcion para cambiar el tablero activo
+function change_active_board(id){
+   $.each(boards, function(i, l){
+      $(l.element).hide();
+      if(l.board_number == id){
+         $(l.element).show();
+         active_board = id;
+      }
+   });
+}
+
+
 
 
 
