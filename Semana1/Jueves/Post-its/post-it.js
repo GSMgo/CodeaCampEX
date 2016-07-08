@@ -4,36 +4,27 @@ var Board = function( selector ) {
    // Utiliza esta sintaxis para referirte al selector que representa al tablero.
    // De esta manera no dependerás tanto de tu HTML.  
    $elem = $( selector );
+   $board_pi = [];
 
    function initialize() {
     // Que debe de pasar cuando se crea un nuevo tablero?
+    $('.post-it').remove();
+    create_post_it(0,0);
+
    };
 
    initialize();
 };
 
-var $elem;
-init_postIt = $('.post-it');
-var zindex = 1;
-
 var PostIt = function(x,y) {
-   clone_postIt = init_postIt.clone();
-   clone_postIt.removeAttr( 'style' );
-   clone_postIt.css({top: y, left: x});
-   $elem.append(clone_postIt);
-   $( ".post-it" ).draggable({cancel: ".content",
-      start: function() {
-        console.log("AAAA");
-         $(this).css('zIndex', zindex);
-        zindex = zindex +1 ;
-      }
-   });
-
-
-   $('.close').click(function(){
-      $(this).parents('div').remove();
-   });
+   this.x = x;
+   this.y = y;
+   this.element = init_postIt.clone();
 };
+
+var $elem;
+var init_postIt = $('.post-it');
+var zindex = 1;
 
 
 $(function() {
@@ -41,25 +32,50 @@ $(function() {
    new Board('#board');
 });
 
-$(function() {
-   $( ".post-it" ).draggable({cancel: ".content",
-      stop: function() {
-        console.log("AAAA");
-        $(this).css('zIndex', zindex);
-        zindex = zindex +1 ;
-      }
+function create_post_it(x,y){
+   var new_pi = new PostIt(x,y,init_postIt.clone());
+   $board_pi.push(new_pi);
+   new_pi.element.removeAttr( 'style' );
+   new_pi.element.css({top: y, left: x});
+   $elem.append(new_pi.element);
+
+   //funcion para arrastrar el postit
+   $(function() {
+      $( ".post-it" ).draggable({cancel: ".content",
+         start: function() {
+            $(this).css('zIndex', zindex);
+            zindex = zindex +1 ;
+            var position = $(this).position();
+            this.x = position.left;
+            this.y = position.top;
+         }
+      });
    });
-   
-});
 
+   //funcion para cerrar el post it
+   $('div.close').click(function(){
+      console.log("close");
+      $(this).parent('div').parent('div').remove();
+   });
+}
 
+//funcion para crear un nuevo post it al hacer doble click (checa si se hace click en el board)
 $( "#board" ).dblclick(function(e) {
    x = e.pageX;
    y = e.pageY;
    var elem = document.elementFromPoint(x, y); 
    if('#'+elem.id+'' == $elem.selector){
-      PostIt(x,y);// $( "#board" ).append('<div id="master" class="post-it"><div class="header"><div class="close">X</div></div><div class="content">...</div></div>');
+      create_post_it(x,y);
    }
-
 });
+
+// funcion para borrar al precionar close
+
+
+
+
+
+
+
+
 
