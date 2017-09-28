@@ -1,0 +1,189 @@
+1. 
+select count(CustomerID)
+from Orders
+where CustomerID = 3;
+
+    count(CustomerID)
+    -----------------
+    6                
+
+2. 
+select contactname, count(orderID)
+from customers inner join orders 
+on customers.customerid = orders.customerid
+where contactname = 'Jim Wood'
+group by customers.contactname
+
+    ContactName  count(orderID)
+    -----------  --------------
+    Jim Wood     6     
+           
+
+3. 
+select companyname, count(orderID)
+from customers inner join orders
+on customers.customerid = orders.customerid
+where companyname = 'Slots Carpet'
+
+    CompanyName   count(orderID)
+    ------------  --------------
+    Slots Carpet  2       
+
+4.
+select companyname, count(orderID) as cuenta
+from customers join orders
+on customers.customerid = orders.customerid
+group by companyname
+order by cuenta DESC
+
+      CompanyName  cuenta    
+      -----------  ----------
+      Floor Co.    6         
+      Sagebrush C  5         
+      Main Tile a  4         
+      Deerfield T  3         
+      Slots Carpe  2    
+
+5.
+select companyname, count(orderID) as cuenta
+from customers join orders
+on customers.customerid = orders.customerid
+group by companyname
+order by cuenta ASC
+
+      CompanyName   cuenta    
+      ------------  ----------
+      Slots Carpet  2         
+      Deerfield Ti  3         
+      Main Tile an  4         
+      Sagebrush Ca  5         
+      Floor Co.     6         
+
+6. 
+select companyname, max(ordenes) as mayor_num
+from (select companyname, count(orderID) as ordenes
+      from customers join orders
+      on customers.customerid = orders.customerid
+      group by companyname
+      order by companyname ASC)
+
+companyname  mayor num   
+-----------  ----------
+Floor Co.    6         
+       
+7.
+SELECT companyname, sum(Quantity) as piezas
+from Orderdetails inner join orders
+on orderdetails.orderid = orders.orderid
+inner join customers
+on orders.customerid = customers.customerid
+group by customers.companyname
+
+    CompanyName     piezas    
+    --------------  ----------
+    Deerfield Tile  340       
+    Floor Co.       670       
+    Main Tile and   940       
+    Sagebrush Carp  740       
+    Slots Carpet    250 
+
+8.
+select orderid, sum(unitprice*quantity) as monto_total
+from orderdetails
+where orderid = 4
+
+    OrderID     monto_total
+    ----------  -----------
+    4           400.0      
+
+9. 
+select orderid, sum(unitprice*quantity) as monto_total
+from orderdetails
+group by orderid
+
+      OrderID     monto_total
+      ----------  -----------
+      1           48.0       
+      2           1948.7     
+      3           2395.9     
+      4           400.0      
+      5           3638.6     
+      6           384.5      
+      7           1321.5     
+      8           1941.7     
+      9           300.0      
+      10          133.2      
+      11          421.2      
+      12          32.0       
+      13          250.0      
+      14          881.0      
+      15          1344.1     
+      16          207.5      
+      17          1942.6     
+      18          285.5      
+      19          1626.5     
+      20          166.0      
+
+10. 
+select orderid, sum(unitprice*quantity) as monto_total
+from orderdetails
+group by orderid
+having monto_total > 1000
+
+    OrderID     monto_total
+    ----------  -----------
+    2           1948.7     
+    3           2395.9     
+    5           3638.6     
+    7           1321.5     
+    8           1941.7     
+    15          1344.1     
+    17          1942.6     
+    19          1626.5    
+
+
+11. 
+select orderid, sum(quantity) as total_piezas
+from orderdetails
+group by orderid
+
+      OrderID     total_piezas
+      ----------  ------------
+      1           90          
+      2           330         
+      3           240         
+      4           80          
+      5           380         
+      6           140         
+      7           210         
+      8           190         
+      9           60          
+      10          100         
+      11          180         
+      12          60          
+      13          50          
+      14          140         
+      15          110         
+      16          70          
+      17          200         
+      18          120         
+      19          130         
+      20          60      
+
+      __________________________ (modificando una base de datos)__________
+
+
+select companyname, orderid, orderdate
+from customers join orders
+on customers.customerid = orders.customerid
+where companyname = 'Floor Co.' AND orderdate between '2013-0-0' AND '2013-12-31';
+
+
+select orderid, customerid
+from orders
+where customerid=5
+
+delete from orders
+where orderid = 13
+delete from orders 
+where orderid = 17

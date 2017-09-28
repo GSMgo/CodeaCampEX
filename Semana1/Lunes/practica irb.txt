@@ -1,0 +1,43 @@
+CodeaCamp01s-Mac-mini:~ codea_mac_01$ irb
+irb(main):001:0> 2+2
+=> 4
+irb(main):002:0> 2-2
+=> 0
+irb(main):003:0> "Hello " + "World"
+=> "Hello World"
+irb(main):004:0> "hello world".upcase
+=> "HELLO WORLD"
+irb(main):005:0> str = "hello"
+=> "hello"
+irb(main):006:0> str2 = " world"
+=> " world"
+irb(main):007:0> str+str2
+=> "hello world"
+irb(main):008:0> array = [1,2,3]
+=> [1, 2, 3]
+irb(main):009:0> puts array
+1
+2
+3
+=> nil
+irb(main):010:0> print array
+[1, 2, 3]=> nil
+irb(main):011:0> p array
+[1, 2, 3]
+=> [1, 2, 3]
+irb(main):012:0> hw = "hello world"
+=> "hello world"
+irb(main):013:0> hw.upcase!
+=> "HELLO WORLD"
+irb(main):014:0> hw
+=> "HELLO WORLD"
+irb(main):015:0> Math.sqrt(7690939204)
+=> 87698.0
+irb(main):016:0> def shout(str)
+irb(main):017:1> p str.upcase!
+irb(main):018:1> end
+=> :shout
+irb(main):019:0> shout("ken")
+"KEN"
+=> "KEN"
+irb(main):020:0> 
