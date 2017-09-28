@@ -1,0 +1,22 @@
+  <h1>Bienvenido a la copia barata de Bitly</h1>
+  <p>Crea un nuevo url corto o despliega la lista de urls generadas</p>
+  <form action="urls" method="POST">
+    <input type="text" name="user_url">
+    <input type="submit" value="Generar url corto">
+  </form>
+  <% if @url.errors.any? %>
+    <ul>
+        <% @url.errors.full_messages.each do |error| %>
+        <li><%= error %> </li>
+    <% end %> 
+  </ul>
+  <% end %>
+  <br>
+  <br>
+
+  <a href='/list_display'>Mostrar todas las urls generadas</a>  
+ 
+<form action="/logregister" method="POST">
+  <input type="submit" value="Log in or Register">
+</form>
+  

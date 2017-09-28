@@ -1,0 +1,20 @@
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+
+}
+th {
+  text-align: left;
+}
+
+.buttons {
+  float: left;
+  margin: 0;
+}
+
+h1#titulo{
+  text-decoration: underline;
+
+}

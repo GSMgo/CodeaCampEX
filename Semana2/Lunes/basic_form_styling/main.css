@@ -1,0 +1,82 @@
+.container {
+  margin: 0 auto;
+  width: 768px;
+}
+
+header {
+  background-color: black;
+}
+
+#logo {
+  display: block;
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  float: left;
+}
+
+a {
+  background-color: #999;
+  color: white;
+  display: block;
+  width: 182px;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px;
+}
+
+.main-title {
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  top: 600px;
+  padding: 20px 0;
+}
+
+#registration {
+  width: 568px;
+  margin: auto;
+  border-radius: 5px; 
+  padding: 20px; 
+  background-color: #C0C0C0;
+}
+
+input {
+  width: 100%;
+  height: 30px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+
+#form_name {
+  width: 250px;
+  float: left;
+}
+
+#form_email {
+  width: 250px;
+  float: right;
+}
+
+textarea {
+  height: 150px;
+  width: 568px;
+  border: 1px solid transparent;
+}
+
+#send_button {
+  background-color: #3399FF;
+  color: #FFFFFF;
+  box-shadow: 0 0 10px 1px #FFFFFF;
+
+}

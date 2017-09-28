@@ -1,0 +1,29 @@
+<header>
+  <img src="img/codea-logo.png" id="logo">
+
+  <% def addTds(player)%>
+    <% i = 2 %>
+    <% 199.times do %>
+      <td id="<%= player %>" value="<%= i %>"></td>
+      <% i += 1 %>
+    <% end %>
+  <% end %>
+
+</header>
+
+<h1 id="main-title">¡RAYUELA!</h1>
+    <button id="start_btn">Jugar</button><br><br>
+
+    <table class="table">
+      <tr id="Player1">
+        <td id="player1" class="active" value=1><strong>Jugador 1</strong></td>
+        <% addTds("player1") %>
+      </tr>
+      <tr id="Player2">
+        <td id="player2" class="active" value=1><strong>Jugador 2</strong>
+          <% addTds("player2") %>
+      </tr>
+    </table>
+
+    
+

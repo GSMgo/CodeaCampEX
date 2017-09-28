@@ -1,0 +1,32 @@
+1. Utiliza los selectores básicos ( element, id y class) para seleccionar dos elementos de la pagina. Utiliza la función .css() para alterar una propiedad de dos elementos distintos.
+
+
+$("#logo-events").css( "background-color", "#FFFFFF" );
+
+$("h2.block").css("color", "red");
+
+_______________________________________________
+
+2. Utiliza los selectores básicos y el método .find() para seleccionar una imagen en la página y cambiarla por otra imagen que te guste.
+
+ $ ("#broadcast").find("img").attr("src", "https://pbs.twimg.com/profile_images/1437922305/obama-fail4.jpg");
+
+$ (".three.columns").find("img").attr("src", "https://mburufleitas.files.wordpress.com/2010/09/fail_08.jpg");
+
+_______________________________________________
+
+3. Usa traverse methods para recorrer el DOM y seleccionar todas las instancias de un elemento que se repita en la página y utiliza el método animate() para modificarlos.
+
+$( "h2.block" ).animate({height: "200px"}, 500);
+
+_______________________________________________
+
+Busca un elemento al cual tengas que llegar utilizando al menos tres selectors / traverse methods para localizarlo. Después utiliza el método .on() para hacer un bind a un evento especifico que modifique el elemento.
+
+
+$("div").find("a").children("img").on( "mouseover", function(){
+  alert($(this).text());
+});
+
+
+

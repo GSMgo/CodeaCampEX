@@ -1,0 +1,5 @@
+<h1>Lista de URLs </h1>
+<% Url.all.each do |object| %> 
+  <p><%="Larga: #{object.long_url} ---> Corta: #{object.short_url}" %></p>
+<% end %>
+  

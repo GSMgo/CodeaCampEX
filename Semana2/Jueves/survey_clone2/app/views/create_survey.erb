@@ -1,0 +1,19 @@
+<%= @user.username %>
+
+<h1 id="titulo"><%= @title %></h1>
+
+<!-- Insertar aqui cada nuevo div de pregunta -->
+<form id="question" action="/finished_survey/get" method="POST">
+  <div id="question_field">
+    <label>Question: </label>
+    <input id="pregunta" type="text">
+    <button id="continue">Continue</button>
+    <br>
+  </div>
+  <br>
+  <input type="submit" id="finish" value="Finish"> <br><br>
+</form>
+
+
+
+

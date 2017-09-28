@@ -1,0 +1,19 @@
+  <h1>Bienvenido al app de twitter!</h1>
+
+  <% if @username %>
+    <form id="logout" action="/logout" method="POST">
+      <p>Welcome: <%= @username %></p>
+      <input type="submit" value="Logout">
+    </form>
+  <% end %>
+
+<form action="/profile" method="POST">
+  <input type="text" name="username" placeholder="username">
+  <input type="submit" value="Login/register">
+</form>
+<br>
+<br>
+
+
+
+  
