@@ -1,0 +1,82 @@
+.board {
+  display:inline-block;
+  font-family: monospace;
+  background-color: #9e8d68;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 85%;
+  height: 100%;
+  float: right;
+}
+
+.post-it {
+  position: absolute !important;
+  width: 160px;
+  background-color: yellow;
+  box-shadow: -2px 2px 5px #555;
+  overflow: hidden;
+}
+
+.post-it .header {
+  background-color: #c2c25b;
+  text-align: right;
+  padding: 2px;
+  height: 15px;
+}
+
+.post-it .header:hover {
+  background-color: #a8a860;
+}
+
+.post-it .header a, .post-it .header a:visited {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.post-it .header a:hover {
+  color: #eee;
+}
+
+.post-it .content {
+  padding: 10px;
+  min-height: 70px;
+  outline: none;
+}
+
+.post-it .header .close {
+  width: 15px;
+  float: right;
+}
+
+#sidebar {
+  display: inline-block;
+  height: 100%;
+  width: 15%;
+  background-color: #E0E0E0;
+  position: relative;
+  margin: 0px;
+}
+
+body {
+  margin: 0px;
+}
+
+div#sidebar button{
+  display: block;
+  width: 90%;
+  height: 23px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+
+div#sidebar span {
+  display: block;
+  width: 100%;
+  height: 15px;
+  margin: auto;
+  margin-bottom: 15px;
+  float:left;
+}
+
